@@ -1,0 +1,811 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      hTCReactionsMarsGupta94;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// 
+// An Aerothermal Study of MESUR Pathfinder Aeroshell (1994)
+// R N Gupta, K P Lee
+// 
+    
+species
+(
+    N2
+    O2
+    NO
+    CO2
+    CN
+    CO
+    C2
+    O2+
+    NO+
+    CO+
+    N
+    O
+    C
+    Ar
+    O+
+    C+
+    e-
+);
+
+
+// Units
+// A: m^3 kmol^-1 s^-1
+// Ta: K
+
+reactions
+{
+    carbonDioxideTBReaction
+    {
+        type     reversiblethirdBodyArrheniusReaction;
+        reaction "CO2 + M = CO + O + M";
+        controlT dissociation;
+        A        6.9e17;
+        beta     -1.5;
+        Ta       63275;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.261967 0.261967 0.261967 0.261967 0.261967 0.261967);
+        A1       (3.31916 3.31916 3.31916 3.31916 3.31916 3.31916);
+        A2       (0.426619 0.426619 0.426619 0.426619 0.426619 0.426619);
+        A3       (-5.55448 -5.55448 -5.55448 -5.55448 -5.55448 -5.55448);
+        A4       (-0.0940112 -0.0940112 -0.0940112 -0.0940112 -0.0940112 -0.0940112);  
+		
+        coeffs
+        (
+            ("Ar" 1)
+            ("C"  20.29)
+            ("N" 20.29)
+            ("O" 20.29)
+            ("C2" 10)
+            ("N2" 10)
+            ("O2" 10)
+            ("CN" 10)
+            ("CO" 10)
+            ("NO" 10)
+            ("CO2" 10)
+			("C+" 	0)
+			("O+" 	0)
+			("O2+" 	0)
+			("CO+" 	0)
+			("NO+" 	0)
+			("e-" 0)
+        );
+    }
+    
+    // Reaction no 2
+    carbonMonoxideTBReaction 
+    {
+        type     reversiblethirdBodyArrheniusReaction;
+        reaction "CO + M = C + O + M";
+        controlT dissociation;
+		
+		
+        A        2.3e16;
+		beta     -1.0;
+		Ta       129000;
+		
+        ni       (1e20 1e21 1e22 1e23 1e24 1e25); // A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.117957 -0.117957 -0.117957 -0.117957 -0.117957 -0.117957);
+        A1       (4.20223 4.20223 4.20223 4.20223 4.20223 4.20223);
+        A2       (0.813501 0.813501 0.813501 0.813501 0.813501 0.813501);
+        A3       (-13.4808 -13.4808 -13.4808 -13.4808 -13.4808 -13.4808);
+        A4       (0.0442479 0.0442479 0.0442479 0.0442479 0.0442479 0.0442479); 
+        
+        coeffs
+        (
+            ("Ar" 1)
+            ("C"  14.8)
+            ("N" 14.8)
+            ("O" 14.8)
+            ("C2" 10)
+            ("N2" 10)
+            ("O2" 10)
+            ("CN" 10)
+            ("CO" 10)
+            ("NO" 10)
+            ("CO2" 10)
+			("C+" 	0)
+			("O+" 	0)
+			("O2+" 	0)
+			("CO+" 	0)
+			("NO+" 	0)
+			("e-" 0)
+        );
+    }
+    
+    // Reaction no 3 SIM
+    oxygenTBReaction   
+    {
+        type     reversiblethirdBodyArrheniusReaction;
+        reaction "O2 + M = O + O + M";
+        controlT dissociation;
+        A        2.0e18;
+        beta     -1.5;
+        Ta       59750;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.0748199 0.0748199 0.0748199 0.0748199 0.0748199 0.0748199);
+        A1       (2.34152 2.34152 2.34152 2.34152 2.34152 2.34152);
+        A2       (0.65137 0.65137 0.65137 0.65137 0.65137 0.65137);
+        A3       (-5.89091 -5.89091 -5.89091 -5.89091 -5.89091 -5.89091);
+        A4       (-0.0259773 -0.0259773 -0.0259773 -0.0259773 -0.0259773 -0.0259773);  
+		
+        coeffs
+        (
+            ("Ar" 1)
+            ("C" 5)
+            ("N" 5)
+            ("O" 5)
+            ("C2" 1)
+            ("N2" 1)
+            ("O2" 1)
+            ("CN" 1)
+            ("CO" 1)
+            ("NO" 1)
+            ("CO2" 1)
+			("C+" 	0)
+			("O+" 	0)
+			("O2+" 	0)
+			("CO+" 	0)
+			("NO+" 	0)
+			("e-" 0)
+        );
+    }
+    
+    // Reaction no 4 SIM
+    nitrogenTBReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversiblethirdBodyArrheniusReaction;
+        reaction "N2 + M = N + N + M";
+        controlT dissociation;
+        A        7.0e18;
+        beta     -1.6;
+        Ta       113200;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.0792514 0.0792514 0.0792514 0.0792514 0.0792514 0.0792514);
+        A1       (2.34968 2.34968 2.34968 2.34968 2.34968 2.34968);
+        A2       (-0.510352 -0.510352 -0.510352 -0.510352 -0.510352 -0.510352);
+        A3       (-10.7709 -10.7709 -10.7709 -10.7709 -10.7709 -10.7709);
+        A4       (-0.0612468 -0.0612468 -0.0612468 -0.0612468 -0.0612468 -0.0612468);  
+		
+        coeffs
+        (
+            ("Ar" 1)
+            ("C" 4.3)
+            ("N" 4.3)
+            ("O" 4.3)
+            ("C2" 1)
+            ("N2" 1)
+            ("O2" 1)
+            ("CN" 1)
+            ("CO" 1)
+            ("NO" 1)
+            ("CO2" 1)
+			("C+" 	0)
+			("O+" 	0)
+			("O2+" 	0)
+			("CO+" 	0)
+			("NO+" 	0)
+            ("e-" 1714)
+        );
+		
+    }
+    
+    // Reaction no 5 SIM
+    dicarbonTBReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversiblethirdBodyArrheniusReaction;
+        reaction "C2 + M = C + C + M";
+        controlT dissociation;
+        A        3.7e11;
+        beta     0;
+        Ta       69900;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.0402978 0.0402978 0.0402978 0.0402978 0.0402978 0.0402978);
+        A1       (1.36505 1.36505 1.36505 1.36505 1.36505 1.36505);
+        A2       (0.522807 0.522807 0.522807 0.522807 0.522807 0.522807 );
+        A3       (-7.0204 -7.0204 -7.0204 -7.0204 -7.0204 -7.0204 );
+        A4       (-0.0171673 -0.0171673 -0.0171673 -0.0171673 -0.0171673 -0.0171673);  
+		
+        coeffs
+        (
+            ("Ar" 	1)
+            ("C" 	1)
+            ("N" 	1)
+            ("O" 	1)
+            ("C2" 	1)
+            ("N2"	1)
+            ("O2" 	1)
+            ("CN" 	1)
+            ("CO" 	1)
+            ("NO" 	1)
+            ("CO2" 	1)
+			("C+" 	0)
+			("O+" 	0)
+			("O2+" 	0)
+			("CO+" 	0)
+			("NO+" 	0)
+            ("e-"	0)
+        );
+    }
+    
+    // Reaction no 6 SIM
+    cyanideTBReaction //KOREA
+    {
+        type     reversiblethirdBodyArrheniusReaction;
+        reaction "CN + M = C + N + M";
+        controlT dissociation;
+        A        2.5e11;
+        beta     0;
+        Ta       71000;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.116141 0.116141 0.116141 0.116141 0.116141 0.116141);
+        A1       (1.2488 1.2488 1.2488 1.2488 1.2488 1.2488);
+        A2       (0.626369 0.626369 0.626369 0.626369 0.626369 0.626369);
+        A3       (-8.81052 -8.81052 -8.81052 -8.81052 -8.81052 -8.81052);
+        A4       (-0.0385283 -0.0385283 -0.0385283 -0.0385283 -0.0385283 -0.0385283);  
+
+		coeffs
+        (
+            ("Ar" 	1)
+            ("C" 	1)
+            ("N" 	1)
+            ("O" 	1)
+            ("C2" 	1)
+            ("N2"	1)
+            ("O2" 	1)
+            ("CN" 	1)
+            ("CO" 	1)
+            ("NO" 	1)
+            ("CO2" 	1)
+			("C+" 	0)
+			("O+" 	0)
+			("O2+" 	0)
+			("CO+" 	0)
+			("NO+" 	0)
+            ("e-"	0)
+        );
+		
+        //defaultEfficiency 1.0;
+    }
+    
+    
+    // Reaction no 8
+    nitricOxideTBReaction 
+    {
+        type     reversiblethirdBodyArrheniusReaction;
+        reaction "NO + M = N + O + M";
+        controlT dissociation;
+        A        5.0e12;
+        beta     0;
+        Ta       75500;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.0941385 0.0941385 0.0941385 0.0941385 0.0941385 0.0941385);
+        A1       (0.892601 0.892601 0.892601 0.892601 0.892601 0.892601);
+        A2       (-0.0759059 -0.0759059 -0.0759059 -0.0759059 -0.0759059 -0.0759059);
+        A3       (-7.23127 -7.23127 -7.23127 -7.23127 -7.23127 -7.23127);
+        A4       (-0.0346425 -0.0346425 -0.0346425 -0.0346425 -0.0346425 -0.0346425);  
+		
+        coeffs
+        (
+            ("Ar" 1)
+            ("C" 22)
+            ("N" 22)
+            ("O" 22)
+            ("C2" 1)
+            ("N2" 1)
+            ("O2" 1)
+            ("CN" 1)
+            ("CO" 1)
+            ("NO" 22)
+            ("CO2" 22)
+			("C+" 	0)
+			("O+" 	0)
+			("O2+" 	0)
+			("CO+" 	0)
+			("NO+" 	0)
+            ("e-"	0)
+        );
+    }
+    
+    // Neutral exchange reactions: no 9 - 22
+    // Reaction no 9
+    nitricOxideOxygenAtomReaction  
+    {
+        type     reversibleArrheniusReaction;
+        reaction "NO + O = N + O2";
+        controlT exchange;
+        A        8.4e9;
+        beta     0;
+        Ta       19450;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (8.35688e-5 8.35688e-5 8.35688e-5 8.35688e-5 8.35688e-05 8.35688e-05);
+        A1       (-1.47969 -1.47969 -1.47969 -1.47969 -1.47969 -1.47969);
+        A2       (-0.780179 -0.780179 -0.780179 -0.780179 -0.780179 -0.780179);
+        A3       (-1.2861 -1.2861 -1.2861 -1.2861 -1.2861 -1.2861);
+        A4       (-0.0202817 -0.0202817 -0.0202817 -0.0202817 -0.0202817 -0.0202817);  
+
+    }
+    
+    // Reaction no 10
+    nitrogenOxygenAtomReaction 
+    {
+        type     reversibleArrheniusReaction;
+        reaction "N2 + O = NO + N";
+        controlT exchange;
+        A        6.4e14;
+        beta     -1.0;
+        Ta       38370;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.0164295 0.0164295 0.0164295 0.0164295 0.0164295 0.0164295);
+        A1       (1.47668 1.47668 1.47668 1.47668 1.47668 1.47668);
+        A2       (-0.37035 -0.37035 -0.37035 -0.37035 -0.37035 -0.37035);
+        A3       (-3.60014 -3.60014 -3.60014 -3.60014 -3.60014 -3.60014);
+        A4       (-0.0130076 -0.0130076 -0.0130076 -0.0130076 -0.0130076 -0.0130076);  
+		
+		
+    }
+    
+    // Reaction no 11
+    carbonMonoxideOxygenAtomReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversibleArrheniusReaction;
+        reaction "CO + O = C + O2";
+        controlT exchange;
+        A        3.9e10;
+        beta     -0.18;
+        Ta       69200;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.182073 -0.182073 -0.182073 -0.182073 -0.182073 -0.182073);
+        A1       (1.83799 1.83799 1.83799 1.83799 1.83799 1.83799);
+        A2       (0.160768 0.160768 0.160768 0.160768 0.160768 0.160768);
+        A3       (-7.5814 -7.5814 -7.5814 -7.5814 -7.5814 -7.5814);
+        A4       (0.0720952 0.0720952 0.0720952 0.0720952 0.0720952 0.0720952);
+    }
+    
+    // Reaction no 12
+    carbonMonoxideCarbonAtomReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversibleArrheniusReaction;
+        reaction "CO + C = C2 + O";
+        controlT exchange;
+        A        2.0e14;
+        beta     -1.0;
+        Ta       58000;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.183456 -0.183456 -0.183456 -0.183456 -0.183456 -0.183456);
+        A1       (2.83334 2.83334 2.83334 2.83334 2.83334 2.83334);
+        A2       (0.227814 0.227814 0.227814 0.227814 0.227814 0.227814);
+        A3       (-6.44156 -6.44156 -6.44156 -6.44156 -6.44156 -6.44156);
+        A4       (0.0656818 0.0656818 0.0656818 0.0656818 0.0656818 0.0656818);
+    }
+    
+    // Reaction no 13
+    carbonMonoxideNitrogenAtomReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversibleArrheniusReaction;
+        reaction "CO + N = CN + O";
+        controlT exchange;
+        A        1.0e11;
+        beta     0;
+        Ta       38600;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.239511 -0.239511 -0.239511 -0.239511 -0.239511 -0.239511);
+        A1       (2.97488 2.97488 2.97488 2.97488 2.97488 2.97488);
+        A2       (0.188048 0.188048 0.188048 0.188048 0.188048 0.188048);
+        A3       (-4.6819 -4.6819 -4.6819 -4.6819 -4.6819 -4.6819);
+        A4       (0.0863753 0.0863753 0.0863753 0.0863753 0.0863753 0.0863753);
+    }
+    
+    // Reaction no 14
+    nitrogenCarbonAtomReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversibleArrheniusReaction;
+        reaction "N2 + C = CN + N";
+        controlT exchange;
+        A        1.1e11;
+        beta     -0.11;
+        Ta       23200;
+		
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.000160817 0.000160817 0.000160817 0.000160817 0.000160817 0.000160817);
+        A1       (1.12115 1.12115 1.12115 1.12115 1.12115 1.12115);
+        A2       (-1.05414 -1.05414 -1.05414 -1.05414 -1.05414 -1.05414);
+        A3       (-2.02993 -2.02993 -2.02993 -2.02993 -2.02993 -2.02993);
+        A4       (-0.00835764 -0.00835764 -0.00835764 -0.00835764 -0.00835764 -0.00835764);
+    }
+    
+    // Reaction no 15
+    cyanideOxygenAtomReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversibleArrheniusReaction;
+        reaction "CN + O = NO + C";
+        controlT exchange;
+        A        1.6e10;
+        beta     0.1;
+        Ta       14600;
+		
+        ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.0214911 0.0214911 0.0214911 0.0214911 0.0214911 0.0214911);
+        A1       (0.356543 0.356543 0.356543 0.356543 0.356543 0.356543);
+        A2       (0.694637 0.694637 0.694637 0.694637 0.694637 0.694637);
+        A3       (-1.57555 -1.57555 -1.57555 -1.57555 -1.57555 -1.57555);
+        A4       (-0.00412507 -0.00412507 -0.00412507 -0.00412507 -0.00412507 -0.00412507);
+    }
+    
+    // Reaction no 16
+    cyanideOxygenAtomReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversibleArrheniusReaction;
+        reaction "CN + C = C2 + N";
+        controlT exchange;
+        A        5.0e10;
+        beta     0;
+        Ta       13000;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.0678883 0.0678883 0.0678883 0.0678883 0.0678883 0.0678883);
+        A1       (-0.116064 -0.116064 -0.116064 -0.116064 -0.116064 -0.116064);
+        A2       (0.0775874 0.0775874 0.0775874 0.0775874 0.0775874 0.0775874);
+        A3       (-1.78135 -1.78135 -1.78135 -1.78135 -1.78135 -1.78135);
+        A4       (-0.0216185 -0.0216185 -0.0216185 -0.0216185 -0.0216185 -0.0216185);
+    }
+    
+    // Reaction no 17
+	//https://www.sciencedirect.com/science/article/pii/S2214157X23002538?via%3Dihub
+    carbonDioxideOxygenAtomReaction //GUPTA TAMBEM
+    {
+        type     reversibleArrheniusReaction;
+        reaction "CO2 + O = O2 + CO";
+        controlT exchange;
+        A        2.1e10;
+        beta     0;
+        Ta       27800;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.154474 0.154474 0.154474 0.154474 0.154474 0.154474);
+        A1       (0.997646 0.997646 0.997646 0.997646 0.997646 0.997646);
+        A2       (-0.272918 -0.272918 -0.272918 -0.272918 -0.272918 -0.272918);
+        A3       (0.288235 0.288235 0.288235 0.288235 0.288235 0.288235);
+        A4       (-0.0688653 -0.0688653 -0.0688653 -0.0688653 -0.0688653 -0.0688653);
+    }
+	
+	//GUPTA EXCLUSIVE START (FROM EVANS, ACTUALLY)
+	
+	carbonMonoxideNitrogenAtomReaction //GUPTA TAMBEM
+    {
+        
+        type     nonEquilibriumReversibleArrheniusReaction;
+        reaction "CO + N = NO + C";
+		controlT exchange;
+		
+        forward
+        {
+            A        2.9e8;
+            beta     0.5;
+            Ta       53630;
+        }
+        reverse
+        {
+            A        2.6e7;
+            beta     0.5;
+            Ta       0;
+        }
+    }
+	
+	twoCarbonMonoxideReaction //GUPTA TAMBEM
+    {
+        
+        type     nonEquilibriumReversibleArrheniusReaction;
+        reaction "CO + CO = CO2 + C";
+		controlT exchange;
+		
+        forward
+        {
+            A        2.3e6;
+            beta     0.5;
+            Ta       65710;
+        }
+        reverse
+        {
+            A        4.6e9;
+            beta     -0.25;
+            Ta       0;
+        }
+    }
+
+
+	nitricOxideCarbonMonoxideReaction //GUPTA TAMBEM
+    {
+        
+        type     nonEquilibriumReversibleArrheniusReaction;
+        reaction "NO + CO = CO2 + N";
+		controlT exchange;
+		
+        forward
+        {
+            A        4.6e5;
+            beta     0.5;
+            Ta       12070;
+        }
+        reverse
+        {
+            A        9.9e9;
+            beta     -0.25;
+            Ta       0;
+        }
+    }
+	
+	carbonMonoxideNitricOxideCationReaction //GUPTA TAMBEM
+    {
+        
+        type     nonEquilibriumReversibleArrheniusReaction;
+        reaction "CO + NO+ = CO+ + NO";
+		controlT chargeExchange;
+		
+        forward
+        {
+            A        2.3e9;
+            beta     0.5;
+            Ta       55190;
+        }
+        reverse
+        {
+            A        1.5e10;
+            beta     0;
+            Ta       0;
+        }
+    }
+	
+	diatomicOxygenNitricOxideCationReaction //GUPTA TAMBEM
+    {
+        
+        type     nonEquilibriumReversibleArrheniusReaction;
+        reaction "O2 + NO+ = O2+ + NO";
+		controlT chargeExchange;
+		
+        forward
+        {
+            A        2.2e9;
+            beta     0.5;
+            Ta       32840;
+        }
+        reverse
+        {
+            A        4e8;
+            beta     0.5;
+            Ta       0;
+        }
+    }
+	
+	carbonMonoxideDiatomicOxygenCationReaction //GUPTA TAMBEM
+    {
+        
+        type     nonEquilibriumReversibleArrheniusReaction;
+        reaction "CO + O2+ = CO+ + O2";
+		controlT chargeExchange;
+		
+        forward
+        {
+            A        2.2e9;
+            beta     0.5;
+            Ta       22400;
+        }
+        reverse
+        {
+            A        7e10;
+            beta     0.5;
+            Ta       0;
+        }
+    }
+
+
+    
+    // Associative ionization reactions: no 23 - 25
+    // Reaction no 23
+    nitrogenAtomOxygenAtomReaction  //EQUILIBRIO TEM NO PARK 2001
+    {
+        type     reversibleArrheniusReaction;
+        reaction "N + O = NO+ + e-";
+        controlT associativeIonisation;
+        A        8.8e5;
+        beta     1.0;
+        Ta       31900;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.0249656 -0.0249656 -0.0249656 -0.0249656 -0.0249656 -0.0249656);
+        A1       (-7.80283 -7.80283 -7.80283 -7.80283 -7.80283 -7.80283);
+        A2       (-1.6025 -1.6025 -1.6025 -1.6025 -1.6025 -1.6025);
+        A3       (-3.25109 -3.25109 -3.25109 -3.25109 -3.25109 -3.25109);
+        A4       (0.0106153 0.0106153 0.0106153 0.0106153 0.0106153 0.0106153);
+    }
+    
+    // Reaction no 24
+    oxygenAtomReaction //KOREA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "O + O = O2+ + e-";
+        controlT associativeIonisation;
+        A        7.1e-1;
+        beta     2.7;
+        Ta       80600;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.102637 0.102637 0.102637 0.102637 0.102637 0.102637);
+        A1       (-8.17003 -8.17003 -8.17003 -8.17003 -8.17003 -8.17003);
+        A2       (-2.47712 -2.47712 -2.47712 -2.47712 -2.47712 -2.47712);
+        A3       (-7.47293 -7.47293 -7.47293 -7.47293 -7.47293 -7.47293);
+        A4       (-0.0440469 -0.0440469 -0.0440469 -0.0440469 -0.0440469 -0.0440469);
+    }
+    
+    // Reaction no 25
+    carbonAtomOxygenAtomReaction  //GUPTA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "C + O = CO+ + e-";
+        controlT associativeIonisation;
+        A        8.8e5;
+        beta     1.0;
+        Ta       33100;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.292939 0.292939 0.292939 0.292939 0.292939 0.292939);
+        A1       (-9.16029 -9.16029 -9.16029 -9.16029 -9.16029 -9.16029);
+        A2       (-3.61394 -3.61394 -3.61394 -3.61394 -3.61394 -3.61394);
+        A3       (-1.74227 -1.74227 -1.74227 -1.74227 -1.74227 -1.74227);
+        A4       (-0.137516 -0.137516 -0.137516 -0.137516 -0.137516 -0.137516);
+    }
+    
+    // Charge exchange reactions: no 26 - 31
+    // Reaction no 26
+    nitricOxideCationcarbonAtomReaction //GUPTA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "NO+ + C = NO + C+";
+        controlT chargeExchange;
+        A        1.0e10;
+        beta     0;
+        Ta       23200;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.0466549 -0.0466549 -0.0466549 -0.0466549 -0.0466549 -0.0466549);
+        A1       (1.59925 1.59925 1.59925 1.59925 1.59925 1.59925);
+        A2       (0.420274 0.420274 0.420274 0.420274 0.420274 0.420274);
+        A3       (-2.6598 -2.6598 -2.6598 -2.6598 -2.6598 -2.6598);
+        A4       (0.0293324 0.0293324 0.0293324 0.0293324 0.0293324 0.0293324);
+    }
+    
+    // Reaction no 27
+    oxygenCationoxygenAtomReaction //GUPTA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "O2+ + O = O+ + O2";
+        controlT chargeExchange;
+        A        4.0e9;
+        beta     -0.09;
+        Ta       18000;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.0950188 -0.0950188 -0.0950188 -0.0950188 -0.0950188 -0.0950188);
+        A1       (-0.216765 -0.216765 -0.216765 -0.216765 -0.216765 -0.216765);
+        A2       (0.0010519 0.0010519 0.0010519 0.0010519 0.0010519 0.0010519);
+        A3       (-2.07685 -2.07685 -2.07685 -2.07685 -2.07685 -2.07685);
+        A4       (0.0338345 0.0338345 0.0338345 0.0338345 0.0338345 0.0338345);
+    }
+    
+    // Reaction no 28
+    nitricOxideCationNitrogenAtomReaction //KOREA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "NO+ + N = O+ + N2";
+        controlT chargeExchange;
+        A        3.4e10;
+        beta     -1.08;
+        Ta       12800;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.000530767 -0.000530767 -0.000530767 -0.000530767 -0.000530767 -0.000530767);
+        A1       (-0.601824 -0.601824 -0.601824 -0.601824 -0.601824 -0.601824);
+        A2       (0.22878 0.22878 0.22878 0.22878 0.22878 0.22878);
+        A3       (-1.36699 -1.36699 -1.36699 -1.36699 -1.36699 -1.36699);
+        A4       (0.00334886 0.00334886 0.00334886 0.00334886 0.00334886 0.00334886);
+    }
+    
+    // Reaction no 29
+    nitricOxideCationOxygenAtomReaction //GUPTA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "NO+ + O = O2+ + N";
+        controlT chargeExchange;
+        A        7.2e9;
+        beta     0.29;
+        Ta       48600;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.108975 0.108975 0.108975 0.108975 0.108975 0.108975);
+        A1       (-0.384005 -0.384005 -0.384005 -0.384005 -0.384005 -0.384005);
+        A2       (-0.911154 -0.911154 -0.911154 -0.911154 -0.911154 -0.911154);
+        A3       (-4.18177 -4.18177 -4.18177 -4.18177 -4.18177 -4.18177);
+        A4       (-0.0642629 -0.0642629 -0.0642629 -0.0642629 -0.0642629 -0.0642629);
+    }
+    
+    // Reaction no 30
+    carbonMonoxideCarbonAtomCationReaction //GUPTA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "CO + C+ = CO+ + C";
+        controlT chargeExchange;
+        A        1.0e10;
+        beta     0;
+        Ta       31400;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.137876 0.137876 0.137876 0.137876 0.137876 0.137876);
+        A1       (0.419969 0.419969 0.419969 0.419969 0.419969 0.419969);
+        A2       (-1.51063 -1.51063 -1.51063 -1.51063 -1.51063 -1.51063);
+        A3       (-2.13852 -2.13852 -2.13852 -2.13852 -2.13852 -2.13852);
+        A4       (-0.0809825 -0.0809825 -0.0809825 -0.0809825 -0.0809825 -0.0809825);
+    }
+    
+    // Reaction no 31
+    oxygenCarbonAtomCationReaction //GUPTA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "O2 + C+ = O2+ + C";
+        controlT chargeExchange;
+        A        1.0e10;
+        beta     0;
+        Ta       9400;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.204339 0.204339 0.204339 0.204339 0.204339 0.204339);
+        A1       (-0.583033 -0.583033 -0.583033 -0.583033 -0.583033 -0.583033);
+        A2       (-0.477291 -0.477291 -0.477291 -0.477291 -0.477291 -0.477291);
+        A3       (-0.24783 -0.24783 -0.24783 -0.24783 -0.24783 -0.24783);
+        A4       (-0.0739726 -0.0739726 -0.0739726 -0.0739726 -0.0739726 -0.0739726);
+    }
+    
+    // Electron impact ionization reactions: no 32 - 33
+    // Reaction no 32 SIM
+    carbonAtomElectronReaction //KOREA
+    {
+        type     reversibleArrheniusReaction; 
+        reaction "C + e- = C+ + e- + e-";
+        controlT impactIonisation;
+        A        3.9e30;
+        beta     -3.78;
+        Ta       130700;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (0.12949 0.12949 0.12949 0.12949 0.12949 0.12949);
+        A1       (-6.07219 -6.07219 -6.07219 -6.07219 -6.07219 -6.07219);
+        A2       (-1.80733 -1.80733 -1.80733 -1.80733 -1.80733 -1.80733);
+        A3       (-15.4497 -15.4497 -15.4497 -15.4497 -15.4497 -15.4497);
+        A4       (-0.0343234 -0.0343234 -0.0343234 -0.0343234 -0.0343234 -0.0343234);
+    }
+    
+    // Reaction no 33 SIM
+    oxygenAtomElectronReaction //KOReA
+    {
+        type     reversibleArrheniusReaction;
+        reaction "O + e- = O+ + e- + e-";
+        controlT impactIonisation;
+        A        3.9e30;
+        beta     -3.78;
+        Ta       158500;
+		ni       (1e20 1e21 1e22 1e23 1e24 1e25); // 6 | A0-A4 coefficients were considered independent (inaccurate) of number density 
+        A0       (-0.00218222 -0.00218222 -0.00218222 -0.00218222 -0.00218222 -0.00218222);
+        A1       (-5.33893 -5.33893 -5.33893 -5.33893 -5.33893 -5.33893);
+        A2       (-1.32003 -1.32003 -1.32003 -1.32003 -1.32003 -1.32003);
+        A3       (-13.0836 -13.0836 -13.0836 -13.0836 -13.0836 -13.0836);
+        A4       (-0.00723496 -0.00723496 -0.00723496 -0.00723496 -0.00723496 -0.00723496);
+    }
+}

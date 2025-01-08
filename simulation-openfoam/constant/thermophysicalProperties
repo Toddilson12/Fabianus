@@ -1,0 +1,50 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+thermoType
+{
+    type            heRho2Thermo;
+    mixture         reacting2Mixture;
+    transport       BlottnerEucken;
+    thermo          decoupledEnergyModes;
+    energy          sensible2InternalEnergy;
+    equationOfState perfect2Gas; //Can I change?
+    specie          advancedSpecie;
+}
+
+hyLight yes; //unavailable
+// Thermal non-equilibrium with single vibro-electronic energy pool
+downgradeToSingleTv yes;
+downgradeToSingleTemperature no;
+
+chemistryReader foam2ChemistryReader;
+
+foamChemistryFile "$FOAM_CASE/constant/chemDicts/hTCReactionsMarsGupta94";
+
+foamChemistryThermoFile "$FOAM_CASE/constant/thermoDEM_TRVE";
+
+twoTemperatureDictFile "$FOAM_CASE/constant/thermo2TModel";
+
+mhdDictFile "$FOAM_CASE/constant/mhdProperties"
+
+temperatureBounds
+{
+    Tlow    200;
+    Thigh   40000;
+}
+
+// ************************************************************************* //

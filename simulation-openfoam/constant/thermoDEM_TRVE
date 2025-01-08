@@ -1,0 +1,1150 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     |                                                 |
+|   \\  /    A nd           | Copyright (C) 2016-2020 hyStrath                |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermoDEM_TRVE;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Atoms and molecules data
+
+N2
+{
+    specie
+    {
+        molWeight       28.0134;
+        particleType    2;
+        charge          0;
+        diameter        4.17e-10;
+        dissocEnergy    3.36e7;
+        iHat            1.78e7;
+        omega           0.74;
+        noVibTemp       1;
+        noElecLevels    15; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1 1 1 0 0 0 );
+        vibrationalList      ( 1  3371 );
+        electronicList       (  
+                                1  0
+                                3  7.223157e4
+                                6  8.577863e4
+                                6  8.605027e4
+                                3  9.535119e4
+                                1  9.805636e4
+                                2  9.968268e4
+                                2  1.048976e5
+                                5  1.116490e5
+                                1  1.225836e5
+                                6  1.248857e5
+                                6  1.282476e5
+                                10 1.338061e5
+                                6  1.404296e5
+                                6  1.504959e5
+                             );               
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        SutherlandEucken
+        {
+            As          1.41e-6;
+            Ts          111.0;
+        }
+        
+        BlottnerEucken
+        {
+            A           2.68e-2;
+            B           3.18e-1;
+            C          -1.13e1;
+        }
+        
+        CEA
+        {
+            temp  (200 1000 5000 15000);
+            visco (
+                    (0.62526577 -31.779652 -1640.7983  1.7454992)
+                    (0.87395209  561.52222 -173948.09 -0.39335958)
+                    (0.88503551  909.02171 -731290.61 -0.53503838) 
+                  );
+            kappa (
+                    (0.85439436 105.73224 -12347.848  0.47793128)
+                    (0.88407146 133.57293 -11429.64   0.24417019)
+                    (2.4176185  8047.7749  3105580.2 -14.517761)
+                  );
+        }
+    }
+}
+
+O2
+{
+    specie
+    {
+        molWeight       31.9988;
+        particleType    2;
+        charge          0;
+        diameter        4.07e-10;
+        dissocEnergy    1.54e7;
+        iHat            1.26e7;
+        omega           0.77;
+        noVibTemp       1;
+        noElecLevels    7; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1 1 1 0 0 0 );
+        vibrationalList      ( 1  2256 );                              
+        electronicList       (  
+                                3  0
+                                2  1.139156e4
+                                1  1.898474e4
+                                1  4.755974e4
+                                6  4.991242e4
+                                3  5.092269e4
+                                3  7.189863e4
+                             );                                     
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        SutherlandEucken
+        {
+            As          1.69e-06;
+            Ts          127.0;
+        }
+        
+        BlottnerEucken
+        {
+            A           4.49e-2;
+            B          -8.26e-2;
+            C          -9.20;
+        }
+        
+        CEA
+        {
+            temp  (200 1000 5000 15000);
+            visco (
+                    (0.6091618  -52.244847 -599.74009 2.0410801)
+                    (0.72216486  175.50839 -57974.816 1.0901044)
+                    (0.73981127  391.94906 -378331.68 0.9093178)
+                  );
+            kappa (
+                    ( 0.77229167  6.846321  -5893.3377 1.2210365)
+                    ( 0.90917351  291.24182 -79650.171 0.064851631)
+                    (-1.1218262  -19286.378  23295011  20.342043)
+                  );
+        }
+    }
+}
+      
+NO
+{
+    specie
+    {
+        molWeight       30.0061;
+        particleType    2;
+        charge          0;
+        diameter        4.2e-10;
+        dissocEnergy    2.09e7;
+        iHat            1.02e7;
+        omega           0.79;
+        noVibTemp       1;
+        noElecLevels    16; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1 1 1 0 10981 0 );
+        vibrationalList      ( 1  2719 );
+        electronicList       (  
+                                4  0
+                                8  5.467346e4
+                                2  6.317140e4
+                                4  6.599450e4
+                                4  6.906121e4
+                                4  7.049998e4
+                                4  7.491055e4
+                                2  7.628875e4
+                                4  8.676189e4
+                                2  8.714431e4
+                                4  8.886077e4
+                                4  8.981756e4
+                                2  8.988446e4
+                                2  9.042702e4
+                                2  9.064284e4
+                                4  9.111763e4
+                             );                  
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           4.36e-2;
+            B          -3.36e-2;
+            C          -9.58;
+        }
+        
+        CEA
+        {
+            temp  (200 1000 5000 15000);
+            visco (
+                    (0.60262029 -62.017783 -139.54524 2.0268332)
+                    (0.7800905   304.86891 -94847.722 0.52873381)
+                    (0.80580582  624.27878 -578792.1  0.2651645)
+                  );
+            kappa (
+                    ( 0.95028758  76.667058 -9989.4764 -0.0062776717)
+                    ( 0.86215238  445.68223 -238564.66  0.46209876)
+                    (-1.0377865  -34486.864  67451187   20.928749)
+                  );
+        }
+    }
+}
+
+N
+{
+    specie
+    {
+        molWeight       14.0067;
+        particleType    1;
+        charge          0;
+        diameter        3.00e-10;
+        dissocEnergy    0;
+        iHat            3.34e7;
+        omega           0.8;
+        noVibTemp       0;
+        noElecLevels    3; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 0 0 1 0 56852 0 );
+        vibrationalList      ( 0  0 );
+        electronicList       ( 
+                               4  0
+                               10 2.766470e4 
+                               6  4.149309e4
+                             );                 
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           1.16e-2;
+            B           6.03e-1;
+            C          -1.24e1;
+        }
+        
+        CEA
+        {
+            temp  (1000 5000 15000);
+            visco (
+                    (0.83724737  439.9715  -174507.53  0.10365689)
+                    (0.89986588 1411.2801  -1820047.8 -0.55811716)
+                  );
+            kappa (
+                    (0.83771661 442.4327 -175784.46 0.89942915)
+                    (0.9000171 1414.1175 -1826240.3 0.24048513)
+                  );
+        }
+    }
+}
+    
+O
+{
+    specie
+    {
+        molWeight       15.9994;
+        particleType    1;
+        charge          0;
+        diameter        3.00e-10;
+        dissocEnergy    0;
+        iHat            2.73e7;
+        omega           0.8;
+        noVibTemp       0;
+        noElecLevels    5; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 0 0 1 0 29968 0 ); 
+        vibrationalList      ( 0  0 );                        
+        electronicList       ( 
+                               5  0
+                               3  2.277078e2 
+                               1  3.265689e2
+                               5  2.283029e4
+                               1  4.861993e4 
+                             );               
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           2.03e-2;  
+            B           4.29e-1;
+            C          -1.16e1;
+        }
+        
+        CEA
+        {
+            temp  (1000 5000 15000);
+            visco (
+                    (0.77269241 83.842977 -58502.098  0.85100827)
+                    (0.87669586 1015.842  -1088456.6 -0.18001077)
+                  );
+            kappa (
+                    (0.77271664 83.9891   -58580.966 1.51799)
+                    (0.87676666 1017.0744 -1090669   0.48644232)
+                  );
+        }
+    }
+}
+    
+// Ions and free-electron data
+ 
+N2+
+{
+    specie
+    {
+        molWeight       28.0128514;
+        particleType    3;
+        charge          1;
+        diameter        4.17e-10;
+        dissocEnergy    3.0e7;
+        omega           0.74;
+        noVibTemp       1;
+        noElecLevels    17; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1 1 1 0 182953 0 );
+        vibrationalList      ( 1  3371 );
+        electronicList       (  
+                                2  0
+                                4  1.318997e4
+                                2  3.663323e4
+                                4  3.668876e4
+                                8  5.985305e4
+                                8  6.618366e4
+                                4  7.598992e4
+                                4  7.625509e4
+                                4  8.201019e4
+                                4  8.416835e4
+                                8  8.632651e4
+                                8  8.920406e4
+                                4  9.208161e4
+                                4  9.222549e4
+                                2  9.293768e4
+                                2  9.639794e4
+                                4  1.035918e5
+                             );               
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           2.68e-2;
+            B           3.18e-1;
+            C          -1.13e1;
+        }
+    }
+}
+  
+O2+
+{
+    specie
+    {
+        molWeight       31.9982514;
+        particleType    3;
+        charge          1;
+        diameter        4.07e-10;
+        dissocEnergy    2.01e7; 
+        omega           0.77;
+        noVibTemp       1;
+        noElecLevels    15;   
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1 1 1 0 140855 0 );
+        vibrationalList      ( 1  2256 );
+        electronicList       (  
+                                4  0
+                                8  4.735441e4
+                                4  5.837399e4
+                                6  5.841427e4
+                                4  6.229897e4
+                                2  6.733468e4
+                                4  7.121937e4
+                                4  7.654284e4
+                                4  8.819692e4
+                                4  8.891631e4
+                                8  9.423978e4
+                                4  9.495916e4
+                                2  9.592027e4
+                                2  9.985100e4
+                                4  1.035918e5
+                              ); 
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           4.49e-02;
+            B          -8.26e-02;
+            C          -9.20;
+        }
+    }
+}
+
+NO+
+{
+    specie
+    {
+        molWeight       30.0055514;
+        particleType    3;
+        charge          1;
+        diameter        4.2e-10;
+        dissocEnergy    3.49e7; 
+        omega           0.79;
+        noVibTemp       1;
+        noElecLevels    8;   
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1 1 1 0 118370 0 );
+        vibrationalList      ( 1  2719 );
+        electronicList       (  
+                                1  0
+                                3  7.508968e4
+                                6  8.525462e4
+                                6  8.903576e4
+                                3  9.746983e4
+                                1  1.000553e5
+                                2  1.028034e5
+                                2  1.057139e5
+                              ); 
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           3.02e-01;
+            B          -3.5039791;
+            C          -3.74;
+        }
+    }
+}
+
+N+
+{
+    specie
+    {
+        molWeight       14.0061514;
+        particleType    3;
+        charge          1;
+        diameter        3.00e-10;
+        dissocEnergy    0; 
+        iHat            0; 
+        omega           0.8;
+        noVibTemp       0;
+        noElecLevels    7; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 0 0 1 0 225730 0 );
+        vibrationalList      ( 0  0 );
+        electronicList       ( 
+                               1  0
+                               3  7.006835e1 
+                               5  1.881918e2
+                               5  2.203657e4
+                               1  4.703183e4
+                               5  6.731252e4
+                               15 1.327191e5
+                             );                 
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           1.16e-2;
+            B           6.03e-1;
+            C          -1.24e1;
+        }
+    }
+}
+
+O+
+{
+    specie
+    {
+        molWeight       15.9988514;
+        particleType    3;
+        charge          1;
+        diameter        3.00e-10;
+        dissocEnergy    0; 
+        iHat            0; 
+        omega           0.8;
+        noVibTemp       0;
+        noElecLevels    3; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 0 0 1 0 187996 0 );
+        vibrationalList      ( 0  0 );                         
+        electronicList       ( 
+                               4  0
+                               10 3.858335e4 
+                               6  5.822349e4 
+                             );               
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           2.03e-2;  
+            B           4.29e-1;
+            C          -1.16e1;
+        }
+    }
+}
+
+e-
+{
+    specie
+    {
+        molWeight       5.4858e-4;
+        particleType    0;
+        charge          -1;
+        diameter        5.6e-15; //1.0e-10;
+        dissocEnergy    0; 
+        omega           0.7;
+        noVibTemp       0;
+        noElecLevels    1;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 0 0 0 0 1.5 0 0 );
+        vibrationalList      ( 0  0 );
+        electronicList       ( 1  0 ); 
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A           0;
+            B           0;
+            C          -1.20e1;
+        }
+    }
+}
+
+// Noble gases
+
+Ar //falta viscosidade
+{
+    specie
+    {
+        molWeight       39.948;
+        particleType    1;
+        charge          0;
+        diameter        3.66e-10;
+        dissocEnergy    0; 
+        omega           0.81;
+        noVibTemp       0;
+        noElecLevels    31;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 0 0 1 0 0 0 );
+        vibrationalList      ( 0  0 );
+        electronicList(      ;    
+				1  	0.0
+				5	133083.4
+				3	133950.5
+				1	135098.0
+				3	136306.9
+				3	148740.6
+				7	150684.8
+				5	150905.5
+				3	151577.0
+				5	151791.8
+				1	152958.8
+				3	153069.4
+				5	153295.2
+				3	153590.5
+				1	155342.5
+				1	159550.6
+				3	159765.2
+				5	160223.7
+				9	161097.1
+				7	161483.1
+				5	162062.6
+				5	162123.4
+				3	162373.1
+				7	162477.9
+				3	163093.8
+				5	163798.6
+				5	164033.1
+				7	164057.2
+				1	164114.0
+				3	164275.8
+				3	164835.8
+				);
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        SutherlandEucken
+        {
+            As          1.965e-06;
+            Ts          144.4;
+        }
+		//Aj - - 0.1045186
+		//B. - 1.9790489
+		//C. " -16.48024
+		//Sutherland's law constant viscosity
+		//Find data on viscosity of argon and then fit it
+		
+		BlottnerEucken //used three temperature midpoints and respective viscosities to solve a 3x3 linearized system of blottners' equations
+        {
+            A          4.31549e-3;  
+            B           6.19669e-1;
+            C          -1.19943e1;
+        }
+        
+        CEA
+        {
+            temp  (200 1000 5000 15000);
+            visco (
+                    (0.61205763 -67.714354  190.4066  2.1588272)
+                    (0.69357334  70.953943 -28386.007 1.4856447)
+                    (0.76608935  678.67215 -849914.17 0.77935167)
+                  );
+            kappa (
+                    (0.60968928 -70.892249  584.20624 1.9337152)
+                    (0.69075463  62.676058 -25667.413 1.2664189)
+                    (0.76269502  623.41752 -718995.52 0.56927918)
+                  );
+        }
+    }
+}
+
+ 
+// Carbon compounds
+     
+CO2
+{
+    specie
+    {
+        molWeight       44.0095;
+        particleType    2;
+        charge          0;
+        diameter        3.3e-10;
+        dissocEnergy    1.7e07; //this is the energy of the first dissociation (c=o bond)
+		//iHat 			1.0068e7; //using alpha = 1/3 and ie = 13.777 eV. CO2+ ions are not considered in this simulation due to negligible concentrations
+        omega           0.74; //wrong
+        noVibTemp       3;
+        noElecLevels    5;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1.5 1 1 0 -47327 0 );
+        vibrationalList      ( 
+                                2  945 
+                                1  1903 
+                                1  3329 
+                             );
+        electronicList       ( 
+					1  	0 
+					3 	42863.7
+					6 	47150.1
+					3 	51436.4
+					2 	64295.6
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A          -1.95e-2;  
+            B           1.05;
+            C          -1.43e1;
+        }
+        
+        SutherlandEucken
+        {
+            As          1.57e-06;
+            Ts          240.0;
+        }
+    }
+}
+
+CO
+{
+    specie
+    {
+        molWeight       28.0101;
+        particleType    2;
+        charge          0;
+        diameter        3.76e-10;
+        dissocEnergy    3.8e07; //3.8e07 ??? 1.7e07 was used before?
+		iHat 			1.609e7; //using alpha = 1/3 and ie = 14.014 ev
+        omega           0.74; //wrong
+        noVibTemp       1;
+        noElecLevels    10;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 1 1 1 0 -13290 0 );
+        vibrationalList      ( 
+                                2  3122 
+                             );
+        electronicList       ( 
+		1  	0 
+		6	69563.2
+		3	79763.1
+		6	87333.2
+		3	91771.5
+		2	92979.6
+		1	92991.9
+		2	94197.3
+		10	114303.2
+		5	115732.0
+		
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A          -1.95e-2;  
+            B           1.01;
+            C          -1.40e1;
+        }
+    }
+}
+
+C
+{
+    specie
+    {
+        molWeight       12.0107;
+        particleType    1;
+        charge          0;
+        diameter        0.7e-10;
+        dissocEnergy    0;
+		iHat  			3.0152e7; //using ie = 11.26030 ev
+        omega           0.8; //wrong
+        noVibTemp       0;
+        noElecLevels    1;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    ( 1.5 0 0 1 0 86235 0 );
+        vibrationalList      ( 0  0 );
+        electronicList       ( 
+				1  	0 
+				3	23.4
+				5	62.0
+				5	14563.1
+				1	30930.4
+				5	48200.5
+				7	91566.7
+				5	91572.6
+				3	91571.0
+				3	107522.2
+				5	107524.0
+				1	107525.2
+				5	139847.1
+				3	151164.1
+				3	171280.5
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+            A          -1.0e-4;  
+            B           7.93e-1;
+            C          -1.34e1;
+        }
+    }
+}
+
+// ADDITIONAL
+
+CN
+{
+    specie
+    {
+        molWeight       26.0174; //NIST
+        particleType    2; //neutral molecule
+        charge          0; //radical but no charge
+        diameter        2.5e-10; // not sure. Rankie 1924 Dont even know if its used anyways. only if we use powerLawEucken
+        dissocEnergy    2.8626e07; //not sure. Calculated using 7.74eV from https://doi.org/10.1063/1.467503; Better (used) reference: The Dissociation Energy of CN and C2
+		iHat 			1.681e7;//using ie = 13.598 ev
+        omega           0.74; //only if we use powerLawEucken
+        noVibTemp       1; // 3(2) - 5 = 1
+        noElecLevels    18; //
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    (1.5 1 1 1 0 52916.228 0);
+        vibrationalList      (1 2992.786);
+        electronicList       ( 
+		2		0.0
+		4		13202.0
+		2		36794.2
+		4		46292.8
+		8		61438.0
+		8		68153.3
+		4		76868.9
+		4		77849.1
+		2		84514.6
+		4		85863.8
+		4		87377.7
+		4		89156.5
+		4		91013.9
+		4		91762.6
+		2		91442.6
+		8		99300.9
+		2		100301.1
+		4		101015.5
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken //10.2514/6.1990-1697
+        {
+            A          -2.5e-3;  //gm/cm-sec
+            B           6.810e-1;
+            C          -12.4914;
+        }
+        
+    }
+}
+C2
+{
+    specie
+    {
+        molWeight      	24.0214; 
+        particleType    2; 
+        charge          0; 
+        diameter        2.5e-10;//Not used. Only for powerLawEucken
+        dissocEnergy    2.518e07; //same source for the cn dissocenergy
+		iHat 			1.409e7; //using 11.4
+        omega           0.74;  //not used
+        noVibTemp       1; 
+        noElecLevels    27;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    (1.5 1 1 1 0 86196.791 0);
+        vibrationalList      (1 2603.551);
+        electronicList       ( 
+			1			0.0
+			6			1023.3
+			3			9193.3
+			2			11989.4
+			3			13184.0
+			2			21689.0
+			1			26775.5
+			6			28607.9
+			10			32147.8
+			5			43542.4
+			2			48953.1
+			6			49829.1
+			1			50257.7
+			6			54722.7
+			2			56244.3
+			6			58289.9
+			6			58580.4
+			6			60866.5
+			2			61580.8
+			1			61780.6
+			3			62080.9
+			6			63938.4
+			1			74082.8
+			2			75511.6
+			1			78633.3
+			2			79155.0
+			2			90156.6
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken //https://deepblue.lib.umich.edu/bitstream/handle/2027.42/140699/1.t4233.pdf?sequence=1
+        {
+            A          -3.1e-3;  //gm/cm-sec
+            B           6.920e-1;
+            C          -12.6;
+        }
+        
+    }
+}
+
+// ions and their respective neutral species present the same blottner viscosity fit coefficients
+
+CN+
+{
+    specie
+    {
+        molWeight       26.0169; 
+        particleType    3; 
+        charge          1;
+        diameter        2.5e-10; //not used
+        dissocEnergy    1.896e7; //used the enthalpies of CN+ -> C+ + N
+        omega           0.74; //not used
+        noVibTemp       1; 
+        noElecLevels    7;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    (1.5 1 1 1 0 215155.216);
+        vibrationalList      (1 2897.943);
+        electronicList       ( 
+		1      0.0
+		6      2000.0
+		2      8313.6
+		6      12000.0
+		1      31771.0
+		1      45333.6
+		2      45686.0
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken //10.2514/6.1990-1697
+        {
+            A          -2.5e-3;  //gm/cm-sec
+            B           6.810e-1;
+            C          -12.4914;
+        }
+        
+    }
+}
+
+CO+
+{
+    specie
+    {
+        molWeight       28.0096; 
+        particleType    3; 
+        charge          1; 
+        diameter        2.5e-10; only if we use powerLawEucken
+        dissocEnergy    2.872e07; //https://www.ias.ac.in/article/fulltext/joaa/011/01/0067-0072 8.338eV
+        omega           0.74; //only if we use powerLawEucken
+        noVibTemp       1; 
+        noElecLevels    4; 
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    (1.5 1 1 1 0 150074.642 0);
+        vibrationalList      (1 3209.689);
+        electronicList       (
+			2		0.0
+			4		29623.4
+			2		65548.2
+			4		90031.2		
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken
+        {
+			A          -1.95e-2;  
+            B           1.01;
+            C          -1.40e1;
+        }
+        
+    }
+}
+
+
+C+ //famoso carbocation
+{
+    specie
+    {
+        molWeight       12.0102; //NIST
+        particleType    3; 
+        charge          1; 
+        diameter        2.5e-10; //only if we use powerLawEucken
+        omega           0.74; //only if we use powerLawEucken
+        noVibTemp       0; 
+        noElecLevels    10;
+    }
+    thermodynamics
+    {
+        decoupledCvCoeffs    (1.5 0 0 1 0 217649.665 0);
+        vibrationalList      (0 0);
+        electronicList       ( 
+			2		0.0
+			4		90.6
+			2		61442.7
+			4		61474.1
+			6		61514.6
+			6		107059.4
+			4		107062.9
+			2		137869.2
+			2		158058.8
+			4		158117.9
+		);              
+    }
+    transport
+    {
+        constant
+        {
+            mu          0;
+            kappa       0;
+            kappave     0;
+        }
+        
+        BlottnerEucken 
+        {
+            A          -1.0e-4;  
+            B           7.93e-1;
+            C          -1.34e1;
+        }
+        
+    }
+}
+// ************************************************************************* //
