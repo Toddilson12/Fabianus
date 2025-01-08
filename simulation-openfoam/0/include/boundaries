@@ -1,0 +1,27 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+// i couldve used this for basically every specie, but i am so stupid that i couldnt even read 2 lines in the tutorial
+//empty
+//{
+//    type            empty;
+//}
+
+//outlet
+//{
+//    type            zeroGradient;
+//}
+
+//lWedge
+//{
+//    type            wedge;
+//}
+
+//rWedge
+//{
+//    type            wedge;
+//}

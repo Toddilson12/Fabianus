@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+Ttr       150; //Initial. MSL example uses Ttr = Tve in initial condition. Used  Mars2020_Post_flight
+Tve       $Ttr; //Shouldn't the vibroelectronic temperature be 0 or close to zero at Mars ambient conditions??
+TveAtom   0; //???
+Twall     1500; //Wall temperature. Just a guess (multiple sources use >1k K)
+
+pressureInlet 4.56e-2;//Freestream pressure in Pa estimated from 1974 Mars Atm Model (not so good agreement with MSL postflight and preflight) 
+rhoInlet 1.35e-6; //from 1974 model; good agreement with preflight MSL2020
+
+magVelocityInlet 5.6e3;//Entry velocity. Find velocity for 80km altitude (5.6km/s?). Just a guess based on MSL
+velocityInlet  ($magVelocityInlet 0 0);
+velocityField  (0 0 0);
+velocityWall   (0 0 0);
+
+//Y_ = Mass fractions | X_ = molar (and volumetric, by the I.G.L.) fraction
+//Caution: the fractions are based on the low atm composition. However, from personal calculation, the fractions are close to medium altitude (like 80km) composition
+//It lacks 0.18%. Adding the remainder into CO2 fraction (to reduce impact)
+X_N2      0.027;
+X_O2      0.0013;
+X_NO      0;
+X_CO2	  0.9550;
+X_CN	  0;
+X_CO	  0.0007;
+X_C2	  0;
+X_O2+	  0;
+X_NO+	  0;
+X_CO+	  0;
+X_N	  0;
+X_O	  0;
+X_C	  0;
+X_Ar	  0.016;
+X_O+	  0;
+X_C+	  0;
+X_e-	  0;
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
