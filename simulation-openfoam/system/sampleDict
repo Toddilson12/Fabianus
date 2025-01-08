@@ -1,0 +1,79 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      sampleDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//SELECT POSITIONS: STAGNATION LINE; SIDES; etc
+
+interpolationScheme cellPointFace;
+setFormat raw;
+surfaceFormat raw;
+
+sets
+{
+	stagnationLine
+	{
+		type uniform;
+		axis x;
+
+		start (-10 0 0)
+		end   (5 0 0)
+		
+		nPoints 100000;
+	}
+};
+
+surfaces
+(
+);
+
+fields
+(
+
+p
+U
+rho
+Tt
+Tv
+Tov
+mfp
+Mach
+KnGLL_rho
+KnGLL_T
+KnGLL_U
+
+Y_N2
+Y_O2
+Y_NO
+Y_CO2
+Y_CN
+Y_CO
+Y_C2
+Y_O2+
+Y_NO+
+Y_CO+
+Y_N
+Y_O
+Y_C
+Y_Ar
+Y_O+
+Y_C+
+Y_e-
+
+
+
+);
+
+
+

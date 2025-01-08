@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      forces;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include "../0/include/initialConditions"
+
+forces
+{
+    type forces;
+    functionObjectLibs ("libstrathForces.so");
+    outputControl timeStep;
+    outputInterval 50;
+    patches (wall); // edit accordingly SEARCH
+    rhoName rho;
+    rhoInf $rhoInlet; // edit accordingly SEARCH
+    log false;
+    CofR (0 0 0);
+    pitchAxis (0 0 1);
+}
+
+forceCoeffs
+{
+    type forceCoeffs;
+    functionObjectLibs ("libstrathForces.so");
+    outputControl timeStep;
+    outputInterval 10;
+    patches (wall); // edit accordingly
+    rhoName rho;
+    rhoInf $rhoInlet; // edit accordingly
+    magUInf $magVelocityInlet;
+    log true;
+    CofR (0 0 0);
+    dragDir (1 0 0);
+    liftDir (0 1 0);
+    pitchAxis (0 0 1);
+    lRef 5; // edit accordingly: see constant/transportProperties/rarefiedParameters/characteristicLength. We used the length, as it is larger and more impactful than the radius
+    Aref 10; // edit accordingly CALCULATE: area is the product of the diameter and length
+}
+

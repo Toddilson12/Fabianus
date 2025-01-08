@@ -1,0 +1,80 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      probes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//SELECT POSITIONS: STAGNATION LINE; SIDES; etc
+probes
+{
+    type            probes;
+    functionObjectLibs ("libsampling.so");
+    enabled         true;
+    outputControl   timeStep;
+    outputInterval  1;
+
+    fields
+    (
+	U
+        p
+        rho        
+        X_N2
+        X_O2
+        X_NO
+	X_CO2
+	X_CN
+	X_CO
+	X_C2
+        X_N
+	X_C
+        X_O
+	X_Ar
+        X_CO+
+        X_O2+
+        X_NO+
+        X_C+
+        X_O+
+        X_e-
+        
+        Tt
+        Tv
+        Tov
+       	
+        nD_N2
+        nD_O2
+        nD_NO
+	nD_CO2
+	nD_CN
+	nD_CO
+	nD_C2
+        nD_N
+	nD_C
+        nD_O
+	nD_Ar
+        nD_CO+
+        nD_O2+
+        nD_NO+
+        nD_C+
+        nD_O+
+        nD_e-
+    );
+
+    probeLocations
+    (
+        (0 0 1)
+	(1 1 1)
+	(-10 0 1)
+	(-2.5 10 1)
+    );
+
+}
